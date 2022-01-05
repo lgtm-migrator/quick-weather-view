@@ -1,6 +1,14 @@
 {
   "short_name": "Quick Weather View",
   "name": "Quick Weather View - beautiful nature pictures",
+  "manifest_version": 2,
+  "version": "1.0.0",
+  "browser_action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png"
+    }
+  },
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,6 +26,10 @@
       "sizes": "512x512"
     }
   ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
