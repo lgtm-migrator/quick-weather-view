@@ -1,14 +1,10 @@
 {
-  "short_name": "Quick Weather View",
-  "name": "Quick Weather View - beautiful nature pictures",
-  "manifest_version": 2,
+  "manifest_version": 3,
+  "name": "Quick Weather View",
   "version": "1.0.0",
-  "browser_action": {
-    "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png"
-    }
-  },
+
+  "default_locale": "en",
+  "description": "It shows the weather as an image based on the user's current time and location.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -26,12 +22,24 @@
       "sizes": "512x512"
     }
   ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_popup": "popup.html"
+  },
+
   "background": {
     "scripts": ["background.js"],
-    "persistent": true
+    "persistent": false
   },
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "options_page": "index.html",
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"]
+    }
+  ]
 }
