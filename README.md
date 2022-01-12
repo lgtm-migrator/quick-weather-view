@@ -8,5 +8,4 @@ QuickWeather View는 날씨를 빠르게 알 수 있게 도와줍니다.
 
 ## Reference
 
-- https://developer.chrome.com/docs/extensions/mv3/manifest/
-- https://developer.chrome.com/docs/extensions/reference/
+- https://developer.chrome.com/docs/extensions/mv3/getstarted/
