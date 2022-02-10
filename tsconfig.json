@@ -24,7 +24,16 @@
     "noEmit": false,
     "jsx": "react",
     "types": ["webpack-env"],
-    "typeRoots": ["src/types"]
+    "typeRoots": ["src/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@Newtab/*": ["src/pages/Newtab/*"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["build", "node_modules"]

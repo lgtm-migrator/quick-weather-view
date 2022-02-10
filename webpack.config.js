@@ -4,12 +4,19 @@ var webpack = require('webpack'),
   env = require('./utils/env'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  TerserPlugin = require('terser-webpack-plugin');
+  TerserPlugin = require('terser-webpack-plugin'),
+  tsTransformPaths = require('@zerollup/ts-transform-paths');
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 var alias = {
   'react-dom': '@hot-loader/react-dom',
+  '@src': path.resolve(__dirname, 'src'),
+  '@assets': path.resolve(__dirname, 'src/assets'),
+  '@styles': path.resolve(__dirname, 'src/styles'),
+  '@Newtab': path.resolve(__dirname, 'src/pages/Newtab'),
+  '@types': path.resolve(__dirname, 'src/types'),
+  '@utils': path.resolve(__dirname, 'src/utils'),
 };
 
 // load the secrets
@@ -75,7 +82,19 @@ var options = {
         loader: 'html-loader',
         exclude: /node_modules/,
       },
-      { test: /\.(ts|tsx)$/, loader: 'ts-loader', exclude: /node_modules/ },
+      {
+        test: /\.(ts|tsx)$/,
+        loader: 'ts-loader',
+        options: {
+          getCustomTransformers: (program) => {
+            const transformer = tsTransformPaths(program);
+            return {
+              afterDeclarations: [transformer.afterDeclarations],
+            };
+          },
+        },
+        exclude: /node_modules/,
+      },
       {
         test: /\.(js|jsx)$/,
         use: [
