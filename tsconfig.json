@@ -23,6 +23,7 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "jsx": "react",
+    "types": ["webpack-env"],
     "typeRoots": ["src/types"]
   },
   "include": ["src"],
