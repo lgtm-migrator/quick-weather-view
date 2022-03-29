@@ -4,25 +4,30 @@ var webpack = require('webpack'),
   env = require('./utils/env'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  TerserPlugin = require('terser-webpack-plugin'),
-  tsTransformPaths = require('@zerollup/ts-transform-paths');
+  TerserPlugin = require('terser-webpack-plugin');
+var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 var alias = {
   'react-dom': '@hot-loader/react-dom',
-  '@src': path.resolve(__dirname, 'src'),
-  '@assets': path.resolve(__dirname, 'src/assets'),
-  '@styles': path.resolve(__dirname, 'src/styles'),
-  '@Newtab': path.resolve(__dirname, 'src/pages/Newtab'),
-  '@types': path.resolve(__dirname, 'src/types'),
-  '@utils': path.resolve(__dirname, 'src/utils'),
 };
 
 // load the secrets
 var secretsPath = path.join(__dirname, 'secrets.' + env.NODE_ENV + '.js');
 
-var fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
+var fileExtensions = [
+  'jpg',
+  'jpeg',
+  'png',
+  'gif',
+  'eot',
+  'otf',
+  'svg',
+  'ttf',
+  'woff',
+  'woff2',
+];
 
 if (fileSystem.existsSync(secretsPath)) {
   alias['secrets'] = secretsPath;
@@ -31,7 +36,7 @@ if (fileSystem.existsSync(secretsPath)) {
 var options = {
   mode: process.env.NODE_ENV || 'development',
   entry: {
-    newtab: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.tsx'),
+    newtab: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.jsx'),
     options: path.join(__dirname, 'src', 'pages', 'Options', 'index.jsx'),
     popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.jsx'),
     background: path.join(__dirname, 'src', 'pages', 'Background', 'index.js'),
@@ -40,19 +45,19 @@ var options = {
     panel: path.join(__dirname, 'src', 'pages', 'Panel', 'index.jsx'),
   },
   chromeExtensionBoilerplate: {
-    notHotReload: ['contentScript', 'devtools'],
+    notHotReload: ['background', 'contentScript', 'devtools'],
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'build'),
     clean: true,
     publicPath: ASSET_PATH,
   },
   module: {
     rules: [
       {
-        // look for .css or .scss files
-        test: /\.(css|scss)$/,
+        // look for .css files
+        test: /\.(css)$/,
         // in the `src` directory
         use: [
           {
@@ -61,20 +66,11 @@ var options = {
           {
             loader: 'css-loader',
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
         ],
       },
       {
         test: new RegExp('.(' + fileExtensions.join('|') + ')$'),
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-        },
+        type: 'asset/resource',
         exclude: /node_modules/,
       },
       {
@@ -82,19 +78,7 @@ var options = {
         loader: 'html-loader',
         exclude: /node_modules/,
       },
-      {
-        test: /\.(ts|tsx)$/,
-        loader: 'ts-loader',
-        options: {
-          getCustomTransformers: (program) => {
-            const transformer = tsTransformPaths(program);
-            return {
-              afterDeclarations: [transformer.afterDeclarations],
-            };
-          },
-        },
-        exclude: /node_modules/,
-      },
+      { test: /\.(ts|tsx)$/, loader: 'ts-loader', exclude: /node_modules/ },
       {
         test: /\.(js|jsx)$/,
         use: [
@@ -116,6 +100,7 @@ var options = {
       .concat(['.js', '.jsx', '.ts', '.tsx', '.css']),
   },
   plugins: [
+    new CleanWebpackPlugin({ verbose: false }),
     new webpack.ProgressPlugin(),
     // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(['NODE_ENV']),

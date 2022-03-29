@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Quick Weather View",
+  "description": "Chrome extension that shows the current local weather as an image",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {
