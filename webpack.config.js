@@ -66,6 +66,9 @@ var options = {
           {
             loader: 'css-loader',
           },
+          {
+            loader: 'postcss-loader',
+          }
         ],
       },
       {

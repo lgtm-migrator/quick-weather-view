@@ -6,8 +6,8 @@ interface Props {
 
 const Newtab: React.FC<Props>  = ({title} : Props) => {
   return (
-    <div className="App">
-      <header>{title}</header>
+    <div className="text-100 App font-roboto">
+      <header className="text-2xl text-center">{title}</header>
       Hello
     </div>
   );
