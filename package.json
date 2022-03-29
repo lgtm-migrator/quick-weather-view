@@ -10,8 +10,18 @@
   "scripts": {
     "build": "node utils/build.js",
     "start": "node utils/webserver.js",
-    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
-    "checkTypes": "tsc --declaration"
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,md}'",
+    "checkTypes": "tsc --declaration",
+    "prepare": "husky install",
+    "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx|jsx)\"",
+    "lint-staged": "lint-staged",
+    "push-main": "push-main"
+  },
+  "lint-staged": {
+    "./src/**/*.{ts,js,jsx,tsx}": [
+      "yarn lint --fix",
+      "yarn format"
+    ]
   },
   "dependencies": {
     "@hot-loader/react-dom": "^17.0.2",
@@ -45,6 +55,8 @@
     "fs-extra": "^10.0.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
     "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
     "prettier": "^2.5.1",
