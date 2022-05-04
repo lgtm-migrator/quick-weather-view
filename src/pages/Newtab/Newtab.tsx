@@ -1,14 +1,13 @@
 import React from 'react';
 
-interface Props {
-  title: string;
-}
+import { Background, Clock, Weather } from '@/components';
 
-const Newtab: React.FC<Props>  = ({title} : Props) => {
+const Newtab = () => {
   return (
-    <div className="text-100 App font-roboto">
-      <header className="text-2xl text-center">{title}</header>
-      Hello
+    <div className="min-h-screen text-100 font-roboto">
+      <Background />
+      <Clock />
+      <Weather />
     </div>
   );
 };
