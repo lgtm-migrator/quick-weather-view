@@ -1,17 +1,17 @@
 import { useCallback, useEffect } from 'react';
 
 import { useGeoLocation, useInterval, useLocalStorage } from '@/hooks';
-import { IStorageWeatherData } from '@/types/WeatherModel';
+import { IStorageCurrentWeatherData } from '@/types/WeatherModel';
 import { WeatherApi } from '@/api/weatherApi';
 import {
   WEATHER_API_REFRESH_INTERVAL,
-  WEATHER_STORAGE_KEY,
+  CURRENT_WEATHER_STORAGE_KEY,
   CURRENT_WEATHER_CACHE_EXPIRY as expiry,
 } from '@/constants';
 
 export function useCurrentWeather() {
-  const [weather, setWeather] = useLocalStorage<IStorageWeatherData | null>(
-    WEATHER_STORAGE_KEY,
+  const [weatherData, setWeatherData] = useLocalStorage<IStorageCurrentWeatherData | null>(
+    CURRENT_WEATHER_STORAGE_KEY,
     null,
     expiry
   );
@@ -22,30 +22,30 @@ export function useCurrentWeather() {
       return;
     }
 
-    const response = await WeatherApi.getCurrentWeather({
+    const response = await WeatherApi.getCurrentWeatherData({
       lat: geoLocation.coords.latitude,
       lon: geoLocation.coords.longitude,
     });
-    console.log('response:', response);
+
     const weather = response.weather[0] ?? {};
-    const data: IStorageWeatherData = {
-      weather,
-      main: response.main,
+    const data: IStorageCurrentWeatherData = {
       city: response.name,
       country: response.sys.country,
+      main: response.main,
+      weather,
     };
-    setWeather(data);
-  }, [geoLocation, setWeather]);
+    setWeatherData(data);
+  }, [geoLocation, setWeatherData]);
 
   useEffect(() => {
-    if (weather === null) {
+    if (weatherData === null) {
       fetchWeatherData();
     }
-  }, [fetchWeatherData, weather]);
+  }, [fetchWeatherData, weatherData]);
 
   useInterval(() => {
     fetchWeatherData();
   }, WEATHER_API_REFRESH_INTERVAL);
 
-  return weather ?? null;
+  return weatherData ?? null;
 }

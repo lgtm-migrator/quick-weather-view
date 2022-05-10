@@ -1,23 +1,105 @@
-export interface IStorageWeatherData {
+export interface IStorageCurrentWeatherData {
   city: string;
   country: string;
-  main: Main;
+  main: IMain;
   weather: IWeather;
 }
 
-export interface IWeatherData {
+export interface ICurrentWeatherResponse {
   coord: ICoords;
   weather: IWeather[];
   base: string;
-  main: Main;
+  main: IMain;
   visibility: number;
-  wind: Wind;
-  clouds: Clouds;
+  wind: IWind;
+  clouds: IClouds;
   dt: number;
-  sys: Sys;
+  sys: ISys;
   id: number;
   name: string;
   cod: number;
+}
+
+export interface IStorageHourlyWeatherData {
+  date: string;
+  weather: IWeather;
+  temp: number;
+  feels_like: number;
+}
+
+export interface IStorageDailyWeatherData {
+  date: string;
+  weather: IWeather;
+  temp: number;
+  maxTemp: number;
+  minTemp: number;
+}
+
+export interface IWeatherDataResponse {
+  current: ICurrent;
+  daily: IDaily[];
+  hourly: ICurrent[];
+  lat: number;
+  lon: number;
+  timezone: number;
+  timezone_offset: number;
+}
+
+export interface ICurrent {
+  dt: number;
+  sunrise?: number;
+  sunset?: number;
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  uvi: number;
+  clouds: number;
+  visibility: number;
+  wind_speed: number;
+  wind_deg: number;
+  weather: IWeather[];
+  wind_gust?: number;
+  pop?: number;
+}
+
+export interface IDaily {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  moonrise: number;
+  moonset: number;
+  moon_phase: number;
+  temp: ITemp;
+  feels_like: IFeelsLike;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  weather: IWeather[];
+  clouds: number;
+  pop: number;
+  uvi: number;
+  rain?: number;
+}
+
+export interface IFeelsLike {
+  day: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+
+export interface ITemp {
+  day: number;
+  min: number;
+  max: number;
+  night: number;
+  eve: number;
+  morn: number;
 }
 
 export interface ICoords {
@@ -44,7 +126,7 @@ export interface IWeather {
  * @property sea_level 해수면 대기압
  * @property grnd_level 지면 대기압
  */
-export interface Main {
+export interface IMain {
   temp: number;
   temp_min: number;
   temp_max: number;
@@ -55,29 +137,40 @@ export interface Main {
   grnd_level?: number;
 }
 
-/**
- * @property speed 풍속
- * @property deg 풍향
- * @property gust 돌풍
- */
-export interface Wind {
+export interface IWind {
   speed: number;
   deg: number;
   gust: number;
 }
 
-/**
- * @property all 흐림 %
- */
-export interface Clouds {
+export interface IClouds {
   all: number;
 }
 
-export interface Sys {
+export interface ISys {
   type: number;
   id: number;
   message: number;
   country: string;
   sunrise: number;
   sunset: number;
+}
+
+// @property 참고 https://openweathermap.org/weather-conditions
+export enum WeatherType {
+  Thunderstorm = 'Thunderstorm',
+  Drizzle = 'Drizzle',
+  Rain = 'Rain',
+  Snow = 'Snow',
+  Mist = 'Mist',
+  Smoke = 'Smoke',
+  Haze = 'Haze',
+  Dust = 'Dust',
+  Fog = 'Fog',
+  Sand = 'Sand',
+  Ash = 'Ash',
+  Squall = 'Squall',
+  Tornado = 'Tornado',
+  Clear = 'Clear',
+  Clouds = 'Clouds',
 }
