@@ -21,13 +21,11 @@ const Clock = () => {
   }, MILLISECONDS_PER_SECOND);
 
   return (
-    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-      <div className="relative font-medium text-white">
-        <div className="tracking-tight text-clock">
-          {hours}:{minutes}:{seconds}
-        </div>
-        <div className="text-right text-date">{formattedDate}</div>
+    <div className="flex flex-col items-center justify-center mt-12 font-medium text-white">
+      <div className="tracking-tight text-clock">
+        {hours}:{minutes}:{seconds}
       </div>
+      <div className="text-right text-date">{formattedDate}</div>
     </div>
   );
 };

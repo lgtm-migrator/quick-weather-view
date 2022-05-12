@@ -1,14 +1,17 @@
 import React from 'react';
 
-import { Background, Clock, Weather } from '@/components';
+import { Background } from '@/components';
+import WidgetLayout from '@/components/WidgetLayout';
+import { GlobalModal } from '@/components/Modal/GlobalModalProvider';
 
 const Newtab = () => {
   return (
-    <div className="min-h-screen text-100 font-roboto">
-      <Background />
-      <Clock />
-      <Weather />
-    </div>
+    <GlobalModal>
+      <div className="min-h-screen text-100 font-roboto">
+        <Background />
+        <WidgetLayout />
+      </div>
+    </GlobalModal>
   );
 };
 
