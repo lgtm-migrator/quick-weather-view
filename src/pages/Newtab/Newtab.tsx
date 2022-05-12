@@ -1,15 +1,17 @@
 import React from 'react';
 
-interface Props {
-  title: string;
-}
+import { Background } from '@/components';
+import WidgetLayout from '@/components/WidgetLayout';
+import { GlobalModal } from '@/components/Modal/GlobalModalProvider';
 
-const Newtab: React.FC<Props>  = ({title} : Props) => {
+const Newtab = () => {
   return (
-    <div className="text-100 App font-roboto">
-      <header className="text-2xl text-center">{title}</header>
-      Hello
-    </div>
+    <GlobalModal>
+      <div className="min-h-screen text-100 font-roboto">
+        <Background />
+        <WidgetLayout />
+      </div>
+    </GlobalModal>
   );
 };
 
