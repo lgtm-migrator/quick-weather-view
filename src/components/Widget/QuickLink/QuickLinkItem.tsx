@@ -7,7 +7,6 @@ interface IQuickLinkItem {
   quickLink: IQuickLink;
 }
 
-// @TODO 디자인하기
 const QuickLinkItem = ({ quickLink }: IQuickLinkItem) => {
   const { domain, name, thumbnail } = quickLink;
 

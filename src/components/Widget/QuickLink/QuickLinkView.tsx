@@ -17,7 +17,9 @@ const QuickLinkView = () => {
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-1 mt-4">
+    <div className="flex flex-wrap items-center justify-center gap-1 mt-4 text-stone-800">
+      {quickLinkList.length > 0 &&
+        quickLinkList.map((item) => <QuickLinkItem key={item.id} quickLink={item} />)}
       <button
         className="flex flex-col justify-center items-center w-32 h-32 transition-colors duration-200 ease-in-out rounded-md cursor-pointer hover:bg-[#ffffff33]"
         type="button"
@@ -28,9 +30,6 @@ const QuickLinkView = () => {
         </div>
         <div className="text-center w-32 truncate mt-[6px] px-2 py-[2px] h-8">추가해보기</div>
       </button>
-
-      {quickLinkList.length > 0 &&
-        quickLinkList.map((item) => <QuickLinkItem key={item.id} quickLink={item} />)}
     </div>
   );
 };
