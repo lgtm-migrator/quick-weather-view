@@ -25,6 +25,12 @@ module.exports = {
       },
     },
   },
+  variants: {
+    extend: {
+      backgroundColor: ['disabled'],
+      textColor: ['disabled'],
+    },
+  },
   plugins: [],
   darkMode: 'class', // or media
 };

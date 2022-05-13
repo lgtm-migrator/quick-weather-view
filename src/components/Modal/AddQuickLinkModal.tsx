@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import { useGlobalModalContext } from '@/components/Modal/GlobalModalProvider';
 import Modal from '@/components/Modal/HeadlessModal';
+import Button from '@/components/Button/Button';
 import { useInput } from '@/hooks';
 import { GlobalKeypressListener } from '@/utils/globalKeypressListener';
 import { Key } from '@/types/Key';
-import Button from '../Button/Button';
 
 const AddQuickLinkModal = () => {
   const { hideModal, store } = useGlobalModalContext();
@@ -32,7 +32,11 @@ const AddQuickLinkModal = () => {
       isOpen={true}
       onClose={hideModal}
       title={title}
-      footer={<Button onClick={createQuickLink}>추가하기</Button>}
+      footer={
+        <Button theme="primary" onClick={createQuickLink}>
+          추가하기
+        </Button>
+      }
     >
       <>
         <GlobalKeypressListener keyCode={Key.Enter} handler={createQuickLink} />

@@ -10,7 +10,7 @@ export function UnstyledButton({
   url,
   external,
   download,
-  htmlType,
+  type,
   disabled,
   loading,
   pressed,
@@ -50,7 +50,7 @@ export function UnstyledButton({
   buttonMarkup = (
     <button
       {...interactiveProps}
-      type={htmlType ?? 'button'}
+      type={type ?? 'button'}
       disabled={disabled || loading}
       aria-controls={ariaControls}
       aria-expanded={ariaExpanded}

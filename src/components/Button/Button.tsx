@@ -3,8 +3,9 @@ import { ImSpinner9 } from 'react-icons/im';
 
 import { handleMouseUpByBlurring, MouseUpBlurHandler } from '@/types/Focus';
 import { mergeClasses } from '@/utils/mergeClasses';
-import { UnstyledButton } from './UnstyledButton';
 import { ButtonProps } from './Type';
+import { UnstyledButton } from './UnstyledButton';
+import { getBase, getSize, getStatus, getTheme } from './utils';
 
 interface CommonButtonProps
   extends Pick<
@@ -27,7 +28,7 @@ type LinkButtonProps = Pick<ButtonProps, 'url' | 'external' | 'download'>;
 
 type ActionButtonProps = Pick<
   ButtonProps,
-  | 'htmlType'
+  | 'type'
   | 'disabled'
   | 'loading'
   | 'ariaControls'
@@ -50,7 +51,7 @@ const Button = ({
   disabled = false,
   external,
   download,
-  htmlType,
+  type,
   form,
   loading = false,
   pressed,
@@ -68,7 +69,7 @@ const Button = ({
   onMouseEnter,
   onTouchStart,
   icon,
-  type = DEFAULT_THEME,
+  theme = DEFAULT_THEME,
   size = DEFAULT_SIZE,
   fullWidth,
   className,
@@ -92,7 +93,7 @@ const Button = ({
     download,
   };
   const actionProps: ActionButtonProps = {
-    htmlType,
+    type,
     form,
     disabled: disabled || loading,
     loading,
@@ -104,16 +105,15 @@ const Button = ({
     onKeyPress,
   };
 
+  const baseClass = getBase();
+  const themeClass = getTheme(theme);
+  const sizeClass = getSize(size);
+  const statusClass = getStatus(loading);
+
   const classes = useMemo(() => {
-    const classData = mergeClasses(
-      'cursor-pointer px-6 py-2 text-white transition-colors duration-200 ease-in-out bg-orange-500 rounded-xl',
-      disabled && 'cursor-not-allowed',
-      loading && 'cursor-wait flex items-center',
-      !(disabled || loading) && 'hover:bg-orange-400',
-      className ?? ''
-    );
+    const classData = mergeClasses(baseClass, themeClass, sizeClass, statusClass, className ?? '');
     return classData;
-  }, [className, disabled, loading]);
+  }, [baseClass, className, sizeClass, statusClass, themeClass]);
 
   const loadingMarkup = <ImSpinner9 className="w-4 h-4 mr-2 animate-spin" />;
 

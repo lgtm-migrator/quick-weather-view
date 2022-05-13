@@ -9,8 +9,8 @@ export interface BaseButton {
   external?: boolean;
   /** 브라우저가 URL을 여는 대신 다운로드하도록 지시합니다. 문자열 값인 경우 다운로드한 파일 이름에 대한 힌트를 제공합니다.*/
   download?: string | boolean;
-  /** html button 요소의 type 어트리뷰트입니다. */
-  htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  /** button 요소의 type 어트리뷰트입니다. */
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /** html button 의 form 어트리뷰트 입니다. */
   form?: string;
   /** 버튼 비활성화 여부 */
@@ -51,19 +51,20 @@ export interface BaseButton {
   className?: string;
 }
 
-export type ButtonType = 'basic' | 'destructive' | 'primary';
+export type ButtonTheme = 'basic' | 'destructive' | 'primary';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 export interface ButtonProps extends BaseButton {
   /**
    * 버튼의 테마를 지정합니다.
    * @default 'basic'
    * */
-  type?: ButtonType;
+  theme?: ButtonTheme;
   /**
    * 버튼의 크기를 변경합니다. (padding 이용)
    * @default 'medium'
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: ButtonSize;
   /** 버튼이 컨테이너의 너비만큼 커지도록 허용 유무 */
   fullWidth?: boolean;
   /** 로딩 여부 */
