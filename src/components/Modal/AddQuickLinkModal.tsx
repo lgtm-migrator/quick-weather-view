@@ -6,24 +6,24 @@ import Button from '@/components/Button/Button';
 import { useInput } from '@/hooks';
 import { GlobalKeypressListener } from '@/utils/globalKeypressListener';
 import { Key } from '@/types/Key';
+import { createQuickLinkObject } from '@/utils/quickLink';
+import { QuickLinkErrorType } from '@/types/QuickLink';
+import { convertDomain, IQuickLink } from '../../utils/quickLink';
+import { useHandlingQuickLinkError } from '@/hooks/useErrorHandle';
 
 const AddQuickLinkModal = () => {
   const { hideModal, store } = useGlobalModalContext();
   const { modalProps } = store || {};
-  const { title, setAction } = modalProps || {};
+  const { title, setAction, quickLinkList } = modalProps || {};
 
   const [name, onChangeName] = useInput('');
   const [domain, onChangeDomain] = useInput('');
 
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const { checkInputs, error } = useHandlingQuickLinkError(quickLinkList);
 
   const createQuickLink = () => {
-    if (!name || !domain) {
-      setShowErrorMessage(true);
-      return;
-    }
-    setShowErrorMessage(false);
-    setAction(name, domain);
+    if (checkInputs({ name, domain })) return;
+    setAction(createQuickLinkObject(name, domain));
     hideModal();
   };
 
@@ -33,7 +33,7 @@ const AddQuickLinkModal = () => {
       onClose={hideModal}
       title={title}
       footer={
-        <Button theme="primary" onClick={createQuickLink}>
+        <Button className="float-right" theme="primary" onClick={createQuickLink}>
           추가하기
         </Button>
       }
@@ -48,7 +48,7 @@ const AddQuickLinkModal = () => {
           <label>주소</label>
           <input type="text" placeholder="youtube.com" value={domain} onChange={onChangeDomain} />
         </div>
-        {showErrorMessage && <p className="text-red-500">값을 입력해주세요</p>}
+        {error.isError && <p className="text-red-500">{error.message}</p>}
       </>
     </Modal>
   );

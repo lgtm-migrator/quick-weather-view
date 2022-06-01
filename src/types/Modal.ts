@@ -1,5 +1,6 @@
 export interface IModalTypes {
   ADD_QUICK_LINK_MODAL: string;
+  EDIT_QUICK_LINK_MODAL: string;
 }
 
 export interface IModalComponents {
