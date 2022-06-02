@@ -34,7 +34,6 @@ const QuickLinkItem = ({ quickLink, editQuickLinkList, removeQuickLinkList }: IQ
     <UnstyledLink
       className="relative group flex flex-col justify-center items-center w-32 h-32 transition-colors rounded-md cursor-pointer hover:bg-[#ffffff33]"
       url={domain}
-      external
       aria-label={name}
       title={name}
     >
