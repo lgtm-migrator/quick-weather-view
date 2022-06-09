@@ -1,6 +1,6 @@
 import React, { forwardRef, memo } from 'react';
 
-import { LinkLikeComponentProps } from '@/types/LinkLikeComponent';
+import { LinkLikeComponentProps } from '@/components/Common/UnstyledLink/LinkLikeComponent';
 
 export interface UnstyledLinkProps extends LinkLikeComponentProps {
   custom?: boolean;
@@ -8,7 +8,7 @@ export interface UnstyledLinkProps extends LinkLikeComponentProps {
 
 export const UnstyledLink = memo(
   forwardRef<HTMLAnchorElement, UnstyledLinkProps>(function UnstyledLink(
-    { custom, ...props },
+    { custom, children, ...props },
     ref
   ) {
     const { url, external, ...restProps } = props;
@@ -17,7 +17,10 @@ export const UnstyledLink = memo(
       ...(external && { target: '_blank', rel: 'noopener noreferrer' }),
     };
 
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
-    return <a ref={ref} href={url} {...externalAttributes} {...restProps} />;
+    return (
+      <a ref={ref} href={url} {...externalAttributes} {...restProps}>
+        {children}
+      </a>
+    );
   })
 );

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { MODAL_TYPES, useGlobalModalContext } from '@/components/Modal/GlobalModalProvider';
+import { MODAL_TYPES, useGlobalModalContext } from '@/components/Common/Modal/GlobalModalProvider';
 import QuickLinkItem from './QuickLinkItem';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { uniqueId } from '@/utils/uniqueId';
-import { useLocalStorage } from '../../../hooks/useLocalStorage';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { convertDomain } from '@/utils/quickLink';
 
 interface IQuickLink {
@@ -14,7 +13,7 @@ interface IQuickLink {
   thumbnail: string;
 }
 
-const QuickLinkView = () => {
+const QuickLinkList = () => {
   const { showModal } = useGlobalModalContext();
   const [quickLinkList, setQuickLinkList] = useLocalStorage<IQuickLink[]>('quick-link', []);
 
@@ -77,4 +76,4 @@ const QuickLinkView = () => {
   );
 };
 
-export default QuickLinkView;
+export default QuickLinkList;

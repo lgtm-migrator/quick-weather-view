@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { handleMouseUpByBlurring } from '@/types/Focus';
-import type { BaseButton } from './Type';
+import type { BaseButton } from '../Button/Type';
 
 export function UnstyledButton({
   id,

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { useGlobalModalContext } from '@/components/Modal/GlobalModalProvider';
-import Modal from '@/components/Modal/HeadlessModal';
-import Button from '@/components/Button/Button';
+import { useGlobalModalContext } from '@/components/Common/Modal/GlobalModalProvider';
+import Modal from '@/components/Common/Modal/HeadlessModal';
+import Button from '@/components/Common/Button/Button';
 import { useInput } from '@/hooks';
 import { GlobalKeypressListener } from '@/utils/globalKeypressListener';
 import { Key } from '@/types/Key';

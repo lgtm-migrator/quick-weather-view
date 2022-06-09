@@ -30,21 +30,21 @@ export interface BaseButton {
   /** 버튼을 설명하는 요소의 ID를 나타냅니다. */
   ariaDescribedBy?: string;
   /** 클릭했을 때 콜백되는 함수입니다. */
-  onClick?(): unknown;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** 버튼에 포커스가 되었을 때 콜백되는 함수입니다. */
-  onFocus?(): unknown;
+  onFocus?(): void;
   /** 포커스가 버튼에서 떠날 때 콜백되는 함수입니다. */
-  onBlur?(): unknown;
+  onBlur?(): void;
   /** 버튼에 keypress 이벤트가 등록되었을 때 콜백되는 함수입니다.*/
-  onKeyPress?(event: React.KeyboardEvent<HTMLButtonElement>): unknown;
+  onKeyPress?(event: React.KeyboardEvent<HTMLButtonElement>): void;
   /** 버튼에 keyup 이벤트 등록 시 콜백되는 함수입니다. */
-  onKeyUp?(event: React.KeyboardEvent<HTMLButtonElement>): unknown;
+  onKeyUp?(event: React.KeyboardEvent<HTMLButtonElement>): void;
   /** 버튼에 keydown 이벤트 등록 시 콜백되는 함수입니다. */
-  onKeyDown?(event: React.KeyboardEvent<HTMLButtonElement>): unknown;
+  onKeyDown?(event: React.KeyboardEvent<HTMLButtonElement>): void;
   /** 마우스 입력 시 콜백되는 함수입니다. */
-  onMouseEnter?(): unknown;
+  onMouseEnter?(): void;
   /** 요소가 터치되었을 때 콜백되는 함수입니다. */
-  onTouchStart?(): unknown;
+  onTouchStart?(): void;
   /** 버튼 안에 표시할 내용 */
   children?: React.ReactChild;
   /** 버튼에 스타일을 적용하기 위한 커스텀 클래스 이름 */

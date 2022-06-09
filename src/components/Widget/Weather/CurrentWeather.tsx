@@ -20,13 +20,12 @@ const CurrentWeather = () => {
   return (
     <div className="flex flex-col items-center gap-1">
       <h3 className="text-4xl">성동구</h3>
-      <div className="text-8xl">{makeTempString(main.temp)}</div>
-      <div className="mt-[-2px] text-2xl opacity-90">{weather.description}</div>
+      <div className="text-6xl">{makeTempString(main.temp)}</div>
+      <div className="mt-[-2px] text-2xl opacity-90">{weather.main}</div>
       <div className="flex items-center gap-2 text-3xl">
         <span>H: {makeTempString(main.temp_max)}</span>
         <span>L: {makeTempString(main.temp_min)}</span>
       </div>
-      {/* <WeatherIcon icon={weather.icon} /> */}
     </div>
   );
 };

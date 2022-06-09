@@ -4,7 +4,7 @@ import { ImSpinner9 } from 'react-icons/im';
 import { handleMouseUpByBlurring, MouseUpBlurHandler } from '@/types/Focus';
 import { mergeClasses } from '@/utils/mergeClasses';
 import { ButtonProps } from './Type';
-import { UnstyledButton } from './UnstyledButton';
+import { UnstyledButton } from '../UnstyledButton/UnstyledButton';
 import { getBase, getSize, getStatus, getTheme } from './utils';
 
 interface CommonButtonProps
@@ -115,8 +115,6 @@ const Button = ({
     return classData;
   }, [baseClass, className, sizeClass, statusClass, themeClass]);
 
-  const loadingMarkup = <ImSpinner9 className="w-4 h-4 mr-2 animate-spin" />;
-
   return (
     <UnstyledButton className={classes} {...commonProps} {...linkProps} {...actionProps} {...rest}>
       <>
@@ -128,3 +126,5 @@ const Button = ({
 };
 
 export default Button;
+
+const loadingMarkup = <ImSpinner9 className="w-4 h-4 mr-2 animate-spin" />;

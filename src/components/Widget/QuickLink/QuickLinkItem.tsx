@@ -1,8 +1,8 @@
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-import { UnstyledLink } from '@/components/UnstyledLink/UnstyledLink';
-import { MODAL_TYPES, useGlobalModalContext } from '@/components/Modal/GlobalModalProvider';
+import { UnstyledLink } from '@/components/Common/UnstyledLink/UnstyledLink';
+import { MODAL_TYPES, useGlobalModalContext } from '@/components/Common/Modal/GlobalModalProvider';
 import { IQuickLink } from '@/utils/quickLink';
 
 interface IQuickLinkItem {
@@ -39,7 +39,9 @@ const QuickLinkItem = ({ quickLink, editQuickLinkList, removeQuickLinkList }: IQ
     >
       <button
         type="button"
-        onClick={(event) => onClickButton(event, name)}
+        onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+          onClickButton(event, name)
+        }
         className="absolute top-0 right-0 py-1 mt-2 mr-2 transition-opacity rounded-md opacity-0 text-slate-100 group-hover:opacity-100"
       >
         <BsThreeDotsVertical size={20} />
