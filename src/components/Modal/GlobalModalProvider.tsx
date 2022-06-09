@@ -1,14 +1,18 @@
 import React, { useState, createContext, useContext } from 'react';
 
 import AddQuickLinkModal from '@/components/Modal/AddQuickLinkModal';
+import EditQuickLinkModal from '@/components/Modal/EditQuickLinkModal';
+
 import { GlobalModalContextType, IModalComponents, IModalTypes, IStore } from '@/types/Modal';
 
 export const MODAL_TYPES: IModalTypes = {
   ADD_QUICK_LINK_MODAL: 'ADD_QUICK_LINK_MODAL',
+  EDIT_QUICK_LINK_MODAL: 'EDIT_QUICK_LINK_MODAL',
 };
 
 const MODAL_COMPONENTS: IModalComponents = {
   [MODAL_TYPES.ADD_QUICK_LINK_MODAL]: AddQuickLinkModal,
+  [MODAL_TYPES.EDIT_QUICK_LINK_MODAL]: EditQuickLinkModal,
 };
 
 const initialState: GlobalModalContextType = {

@@ -5,7 +5,6 @@ import { useInput } from './useInput';
 import { useInterval } from './useInterval';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { useLocalStorage } from './useLocalStorage';
-import { useQuickLink } from './useQuickLink';
 
 export {
   useCurrentWeather,
@@ -15,5 +14,4 @@ export {
   useInterval,
   useIsomorphicLayoutEffect,
   useLocalStorage,
-  useQuickLink,
 };
