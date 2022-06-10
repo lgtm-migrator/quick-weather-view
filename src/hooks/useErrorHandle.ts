@@ -10,7 +10,7 @@ export function useHandlingQuickLinkError(orignQuickList: IQuickLink[]) {
 
   const ERROR_MESSAGE: { [key in keyof typeof QuickLinkErrorType]: string } = {
     emptyInput: '값을 입력해주세요',
-    invalidDomain: '이상함',
+    invalidDomain: '유효하지 않은 형식의 도메인이예요',
     duplicateDomain: '이미 등록된 도메인이에요',
   };
 

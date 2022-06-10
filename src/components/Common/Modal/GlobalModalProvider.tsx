@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext } from 'react';
 
 import AddQuickLinkModal from '@/components/Common/Modal/AddQuickLinkModal';
 import EditQuickLinkModal from '@/components/Common/Modal/EditQuickLinkModal';
+import UserErrorModal from '@/components/Common/Modal/UserErrorModal';
 
 import {
   GlobalModalContextType,
@@ -13,11 +14,13 @@ import {
 export const MODAL_TYPES: IModalTypes = {
   ADD_QUICK_LINK_MODAL: 'ADD_QUICK_LINK_MODAL',
   EDIT_QUICK_LINK_MODAL: 'EDIT_QUICK_LINK_MODAL',
+  USER_ERROR_MODAL: 'USER_ERROR_MODAL',
 };
 
 const MODAL_COMPONENTS: IModalComponents = {
   [MODAL_TYPES.ADD_QUICK_LINK_MODAL]: AddQuickLinkModal,
   [MODAL_TYPES.EDIT_QUICK_LINK_MODAL]: EditQuickLinkModal,
+  [MODAL_TYPES.USER_ERROR_MODAL]: UserErrorModal,
 };
 
 const initialState: GlobalModalContextType = {
