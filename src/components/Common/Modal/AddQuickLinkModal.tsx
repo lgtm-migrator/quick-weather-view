@@ -8,7 +8,6 @@ import { GlobalKeypressListener } from '@/utils/globalKeypressListener';
 import { Key } from '@/types/Key';
 import { createQuickLinkObject } from '@/utils/quickLink';
 import { useHandlingQuickLinkError } from '@/hooks/useErrorHandle';
-import ExceptionWrapper from '@/components/Widget/QuickLink/ExceptionWrapper';
 
 const AddQuickLinkModal = () => {
   const { hideModal, store } = useGlobalModalContext();

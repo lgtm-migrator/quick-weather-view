@@ -22,7 +22,7 @@ const CurrentWeather = () => {
       <h3 className="text-4xl">성동구</h3>
       <div className="text-6xl">{makeTempString(main.temp)}</div>
       <div className="mt-[-2px] text-2xl opacity-90">{weather.main}</div>
-      <div className="flex items-center gap-2 text-3xl">
+      <div className="flex items-center gap-2 text-2xl">
         <span>H: {makeTempString(main.temp_max)}</span>
         <span>L: {makeTempString(main.temp_min)}</span>
       </div>
