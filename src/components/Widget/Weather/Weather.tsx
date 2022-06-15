@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import { useAllWeather } from '@/hooks';
 import CurrentWeather from '@/components/Widget/Weather/CurrentWeather';
@@ -12,10 +12,10 @@ const Weather = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-10 text-white">
       <ErrorBoundary
-        resetKeys={[hourlyWeatherData]}
+        resetKeys={[hourlyWeatherData, dailyWeatherData]}
         renderFallback={({ error, reset }) => (
           <div>
-            날씨 정보를 받아오는 데 실패했어요 <br />
+            날씨 정보를 가져오는 데 실패했어요 <br />
             {error.message}
             <button type="button" onClick={reset}>
               다시 시도할래요

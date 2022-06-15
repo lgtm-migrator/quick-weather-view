@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useCurrentWeather } from '@/hooks';
 import { makeTempString } from '@/utils/setTempUnit';
@@ -9,17 +9,13 @@ import { makeTempString } from '@/utils/setTempUnit';
 const CurrentWeather = () => {
   const currentWeatherData = useCurrentWeather();
 
-  useEffect(() => {
-    console.log('rerender view');
-  }, [currentWeatherData]);
-
   if (!currentWeatherData) return null;
 
   const { weather, main } = currentWeatherData;
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <h3 className="text-4xl">성동구</h3>
+      <h3 className="text-4xl">도시명</h3>
       <div className="text-6xl">{makeTempString(main.temp)}</div>
       <div className="mt-[-2px] text-2xl opacity-90">{weather.main}</div>
       <div className="flex items-center gap-2 text-2xl">

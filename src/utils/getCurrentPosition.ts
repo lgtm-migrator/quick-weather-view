@@ -1,5 +1,5 @@
 const options = {
-  timeout: 5000,
+  timeout: 6000,
   maximumAge: 50000,
 };
 
