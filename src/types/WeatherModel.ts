@@ -109,7 +109,7 @@ export interface ICoords {
 
 export interface IWeather {
   id: number;
-  main: string;
+  main: WeatherType;
   description: string;
   icon: string;
 }
@@ -156,6 +156,17 @@ export interface ISys {
   sunset: number;
 }
 
+export type DayNightType = 'Day' | 'Night';
+
+export interface IWeatherPhoto {
+  image: string;
+  link: string;
+  source: 'unsplash';
+  author: string;
+  weathers: WeatherType[];
+  dayNight: DayNightType[];
+}
+
 // @property 참고 https://openweathermap.org/weather-conditions
 export enum WeatherType {
   Thunderstorm = 'Thunderstorm',
@@ -173,4 +184,5 @@ export enum WeatherType {
   Tornado = 'Tornado',
   Clear = 'Clear',
   Clouds = 'Clouds',
+  Unknown = 'Unknown',
 }

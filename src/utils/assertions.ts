@@ -113,5 +113,5 @@ export function isEmptyObjectValue(value: any) {
  * @description 인자가 Promise 객체인 경우 true, 그렇지 않은 경우는 false를 리턴합니다.
  */
 export function isPromise(value: any) {
-  return !isNil(value) && !isNil(value.then);
+  return !isNil(value) && !isNil(value);
 }

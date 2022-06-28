@@ -1,0 +1,18 @@
+[
+  {
+    "image": "https://images.unsplash.com/photo-1593981211728-41e4e796ec96",
+    "link": "https://unsplash.com/photos/iovdR-SxMj0",
+    "source": "unsplash",
+    "author": "Mike Kotsch",
+    "weathers": ["Rain"],
+    "dayNight": ["Day", "Night"]
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1612972806701-9cffb7470ed2",
+    "link": "https://unsplash.com/photos/mPw1d9pwZsI",
+    "source": "unsplash",
+    "author": "Bas van der Linden",
+    "weathers": ["Clear"],
+    "dayNight": ["Day", "Night"]
+  }
+]

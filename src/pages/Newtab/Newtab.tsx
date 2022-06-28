@@ -7,8 +7,13 @@ import { GlobalModal } from '@/components/Common/Modal/GlobalModalProvider';
 import Weather from '@/components/Widget/Weather/Weather';
 import Clock from '@/components/Widget/Clock';
 import QuickLinkView from '@/components/Widget/QuickLink/QuickLinkList';
+import { useCurrentWeather } from '@/hooks';
 
 const Newtab = () => {
+  const weatherData = useCurrentWeather();
+
+  if (!weatherData) return null;
+
   return (
     <GlobalModal>
       <ToastContainer
@@ -20,7 +25,7 @@ const Newtab = () => {
         closeButton={true}
       />
       <div className="min-h-screen text-100 font-roboto">
-        <Background />
+        <Background weather={weatherData.weather} />
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="relative">
             <Weather />

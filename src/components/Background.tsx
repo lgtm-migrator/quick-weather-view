@@ -1,19 +1,32 @@
 import React from 'react';
 
-const Background = () => {
+import { UnstyledLink } from '@/components/Common/UnstyledLink/UnstyledLink';
+import { useBackgroundWeatherPhoto } from '@/hooks';
+import { IStorageCurrentWeatherData, WeatherType } from '@/types/WeatherModel';
+
+// @TODO 이미지 색상 추출 후, 메인 색상에 따라 폰트 색 결정하는 코드 작성하기
+const Background = ({ weather }: Partial<IStorageCurrentWeatherData>) => {
   const windowWidth = window.innerWidth;
-  // TODO unsplash image 불러오도록 하기
-  const photo = 'https://images.unsplash.com/photo-1535557597501-0fee0a500c57';
-  // const photo = 'https://images.unsplash.com/photo-1537210249814-b9a10a161ae4';
+  const { image, link, author } = useBackgroundWeatherPhoto(weather?.main ?? WeatherType.Unknown);
 
   return (
     <div className="w-full h-screen">
       <img
         draggable="false"
-        src={`${photo}?auto=format&fit=crop&w=${windowWidth}&q=80`}
+        src={`${image}?auto=format&fit=crop&w=${windowWidth}&q=80`}
         className="object-cover w-full h-full"
         alt="background"
       />
+      <UnstyledLink
+        external
+        url={link}
+        className="absolute bottom-0 z-10 pb-1 pl-1 text-sm cursor-pointer"
+      >
+        <div className="flex flex-col">
+          <span>author: {author}</span>
+          <span>link: {link}</span>
+        </div>
+      </UnstyledLink>
     </div>
   );
 };

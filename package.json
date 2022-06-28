@@ -16,7 +16,7 @@
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx|jsx)\"",
     "lint-staged": "lint-staged",
     "push-main": "push-main",
-    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx|json)\" --write",
     "commit": "cz"
   },
   "lint-staged": {
